@@ -28,6 +28,7 @@ import User from "../models/user-schema.js";
     export const checkAuth = async (req) => {
         const cookie = req.headers.cookie;
         let tokenValue = null;
+        if(!cookie) return null;
         const cookieArray = cookie.split(';');
 
         for (const cookie of cookieArray) {

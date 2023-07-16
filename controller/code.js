@@ -1,5 +1,6 @@
 import compiler from 'compilex';
 import os from 'os';
+import tmp from 'tmp';
 
 var options = {stats : true}; //prints stats on console 
 compiler.init(options);
@@ -28,10 +29,16 @@ export const CodeCompile = async(req,res)=>{
                     }
                 });
             }else{
-                var envData = { OS : "windows" , cmd : "g++",options:{timeout:10000}};
-                compiler.compileCPP(envData , code  , function (data) {
+                
+                if (os.platform() === 'win32') {
+                    var envData = { OS: 'windows', cmd: 'g++',options:{timeout:null} };
+                  } else {
+                    var envData = { OS: 'linux', cmd: 'gcc',options:{timeout:null} };
+                }
+
+                compiler.compileCPP(envData , code , function (data) {
                     if(data.error){
-                        res.status(400).json({message:data.error}); 
+                        res.status(400).json({message : data.error}); 
                     }
                     else{
                         res.status(200).json({message:data.output});
