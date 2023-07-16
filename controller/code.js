@@ -142,12 +142,12 @@ export const CodeCompile = async(req,res)=>{
         // compiler.flush(function(){
         //     console.log('All temporary files flushed !'); 
         //     });
-        await new Promise((resolve, reject) => {
-            compiler.flush(function () {
-              console.log('All temporary files flushed!');
-              resolve();
-            });
-          });
+        // await new Promise((resolve, reject) => {
+        //     compiler.flush(function () {
+        //       console.log('All temporary files flushed!');
+        //       resolve();
+        //     });
+        //   });
         
     } catch (error) {
         res.status(500).json({message : error.message});
