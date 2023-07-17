@@ -1,5 +1,6 @@
 /.env
 /node_modules
+!node_modules/compilex
 /package-lock.json
 /client/node_modules
 /client/package-lock-json
