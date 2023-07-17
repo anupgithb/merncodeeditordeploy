@@ -18,11 +18,11 @@ export const CodeCompile = async(req,res)=>{
             if(input!=="")
             {
                 // console.log("goooddd");
-                if (os.platform() === 'win32') {
-                    var envData = { OS: 'windows', cmd: 'g++',options:{timeout:10000} };
-                  } else {
+                // if (os.platform() === 'win32') {
+                    // var envData = { OS: 'windows', cmd: 'g++',options:{timeout:10000} };
+                //   } else {
                     var envData = { OS: 'linux', cmd: 'gcc',options:{timeout:10000} };
-                  }
+                //   }
                 // var envData = { OS : "windows" , cmd : "g++",options:{timeout:10000}};
                 compiler.compileCPPWithInput(envData , code , input , function (data) {
                     if(data.error){
